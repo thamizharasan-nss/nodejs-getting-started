@@ -29,22 +29,7 @@ jobs:
          
          
 
-  code-coverage:
-     continue-on-error: true
-     needs: unit-testing
-     runs-on: ubuntu-latest
-     steps:
-     
-     - name: Upload a Build Artifact
-       uses: actions/download-artifact@v7.0.0
-       with:  
-         name: artifact
-
-     - name: display the path
-       run: ls -la 
   
-      
-
          
 
          

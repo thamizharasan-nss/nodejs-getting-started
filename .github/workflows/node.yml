@@ -19,4 +19,10 @@ jobs:
 
      - name: unit testing 
        run: npm test
+
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v6.0.0
+       with:  
+         name: artifact
+         path: junit.xml
        

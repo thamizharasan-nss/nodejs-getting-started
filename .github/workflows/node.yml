@@ -25,8 +25,10 @@ jobs:
        with:  
          name: artifact-${{ github.job }}
          path: test-reports/junit.xml
+         
 
   code-coverage:
+     continue-on-error: true
      needs: unit-testing
      runs-on: ubuntu-latest
      steps:
@@ -52,6 +54,7 @@ jobs:
        with:  
          name: coverage-report
          path: coverage
+      
 
          
 

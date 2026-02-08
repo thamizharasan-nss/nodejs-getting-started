@@ -25,6 +25,8 @@ jobs:
        with:  
          name: artifact
          path: test-reports/junit.xml
+         retention-days: 1
+         
          
 
   code-coverage:

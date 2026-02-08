@@ -1,1 +1,22 @@
+name: nodejs application 
+on:
+  workflow_dispatch: 
 
+jobs:
+  unit-testing:
+     runs-on: ubuntu-latest
+     steps:
+     - name: checkout the code
+       uses: actions/checkout@v4 
+
+     - name: Setup Node.js environment
+       uses: actions/setup-node@v6.2.0  
+       with:
+         node-version: 20
+
+     - name: Install the dependency 
+       run: npm install 
+
+     - name: unit testing 
+       run: npm test
+       

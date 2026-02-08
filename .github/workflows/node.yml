@@ -32,28 +32,15 @@ jobs:
      needs: unit-testing
      runs-on: ubuntu-latest
      steps:
-     - name: checkout the code
-       uses: actions/checkout@v4 
-
-     - name: Setup Node.js environment
-       uses: actions/setup-node@v6.2.0  
-       with:
-         node-version: 20
-
-     - name: Install the dependency 
-       run: npm install 
-
-     - name: unit testing 
-       run: npm test  
-
-     - name: unit coverage
-       run: npm run coverage
-
+     
      - name: Upload a Build Artifact
-       uses: actions/upload-artifact@v6.0.0
+       uses: actions/download-artifact@v7.0.0
        with:  
-         name: coverage-report
-         path: coverage
+         name: artifact-${{ github.job }}
+
+     - name: display the path
+       run: ls -la 
+  
       
 
          

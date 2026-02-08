@@ -4,11 +4,7 @@ on:
 
 jobs:
   unit-testing:
-     strategy:
-       matrix:
-         os: [ ubuntu-latest, windows-latest]
-         node-version: [ 20 , 22]
-     runs-on: ${{ matrix.os }}
+     runs-on: ubuntu-latest
      steps:
      - name: checkout the code
        uses: actions/checkout@v4 
@@ -16,7 +12,7 @@ jobs:
      - name: Setup Node.js environment
        uses: actions/setup-node@v6.2.0  
        with:
-         node-version: ${{ matrix.node-version }}
+         node-version: 20
 
      - name: Install the dependency 
        run: npm install 
@@ -29,4 +25,32 @@ jobs:
        with:  
          name: artifact-${{ github.job }}
          path: test-reports/junit.xml
+
+  code-coverage:
+     needs: unit-testing
+     runs-on: ubuntu-latest
+     steps:
+     - name: checkout the code
+       uses: actions/checkout@v4 
+
+     - name: Setup Node.js environment
+       uses: actions/setup-node@v6.2.0  
+       with:
+         node-version: 20
+
+     - name: Install the dependency 
+       run: npm install 
+
+     - name: unit testing 
+       run: npm run coverage
+
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v6.0.0
+       with:  
+         name: coverage-report
+         path: coverage
+
+         
+
+         
        

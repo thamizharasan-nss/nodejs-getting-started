@@ -1,0 +1,21 @@
+name: deploy workflow
+on:
+  workflow_dispatch: 
+  
+jobs:  
+  code-coverage:
+     continue-on-error: true
+     runs-on: ubuntu-latest
+     steps:
+     - name: download a Build Artifact
+       uses: actions/download-artifact@v7.0.0
+       with:  
+         name: artifact
+         run-id: 62886260537
+         github-token: ${{ github.token }}
+         
+
+     - name: display the path
+       run: ls -la 
+  
+      

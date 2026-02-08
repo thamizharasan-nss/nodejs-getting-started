@@ -42,6 +42,9 @@ jobs:
        run: npm install 
 
      - name: unit testing 
+       run: npm test  
+
+     - name: unit coverage
        run: npm run coverage
 
      - name: Upload a Build Artifact
